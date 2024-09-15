@@ -1,0 +1,32 @@
+name: Build and Deploy to GitHub Pages
+
+on:
+  push:
+    branches:
+      - master # Change this if your master branch has a different name
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Install Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: "14" # Specify the Node.js version
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Build the Angular app
+        run: npm run build --configuration production --base-href "https://sathishportfolio.github.io/dsa-roadmap-app/"
+        # Replace <username> and <repositoryname> with your actual GitHub username and repository name
+
+      - name: Deploy to GitHub Pages
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          folder: dist/dsa-roadmap-app/browser # Replace with your actual dist folder name
+          token: ${{ secrets.GITHUB_TOKEN }} # Automatically provided by GitHub Actions
