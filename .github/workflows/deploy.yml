@@ -16,13 +16,13 @@ jobs:
       - name: Install Node.js
         uses: actions/setup-node@v2
         with:
-          node-version: "14" # Specify the Node.js version
+          node-version: "21" # Specify the Node.js version
 
       - name: Install dependencies
         run: npm install
 
       - name: Build the Angular app
-        run: npm run build --configuration production --base-href "https://sathishportfolio.github.io/dsa-roadmap-app/"
+        run: npm run build -- --configuration production --base-href "https://sathishportfolio.github.io/dsa-roadmap-app/"
         # Replace <username> and <repositoryname> with your actual GitHub username and repository name
 
       - name: Deploy to GitHub Pages
